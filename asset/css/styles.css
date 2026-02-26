@@ -5022,10 +5022,26 @@ header .mobile-menu {
     }
     .section-process .process-item {
         padding: 32px 20px 50px 20px;
+        position: relative;
+        display: block;
+    }
+    .section-process .process-item .image {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 88px;
+        height: 88px;
     }
     .section-process .process-item .content {
         min-height: unset;
         gap: 20px;
+        display: block;
+    }
+    .section-process .process-item .title {
+        padding-right: 96px;
+    }
+    .section-process .process-item .text {
+        padding-right: 0;
     }
     .pricing-item .top {
         padding: 25px 20px 40px;
