@@ -202,6 +202,29 @@
     if (e.key === "ArrowLeft") prevSlide();
   });
 
+  // Global action buttons outside modal
+  document.querySelectorAll('[data-action="scrollTop"]').forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+
+  document.querySelectorAll('[data-action="copyBrandLink"]').forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard?.writeText(window.location.href);
+        const original = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(() => {
+          btn.textContent = original || "Copy brand page";
+        }, 900);
+      } catch (_) {
+        // no-op fallback
+      }
+    });
+  });
+
   // ---------- Swipe (mobile) ----------
   let touchStartX = 0;
   let touchStartY = 0;
