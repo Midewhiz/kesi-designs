@@ -5027,10 +5027,11 @@ header .mobile-menu {
     }
     .section-process .process-item .image {
         position: absolute;
-        top: 20px;
-        right: 20px;
-        width: 88px;
-        height: 88px;
+        top: 18px;
+        right: 18px;
+        width: 72px;
+        height: 72px;
+        overflow: hidden;
     }
     .section-process .process-item .content {
         min-height: unset;
@@ -5038,10 +5039,14 @@ header .mobile-menu {
         display: block;
     }
     .section-process .process-item .title {
-        padding-right: 96px;
+        padding-right: 84px;
     }
     .section-process .process-item .text {
         padding-right: 0;
+    }
+    .section-process .process-item .image .gradient-icon {
+        width: 44px !important;
+        height: 44px !important;
     }
     .pricing-item .top {
         padding: 25px 20px 40px;
