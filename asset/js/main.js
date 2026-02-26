@@ -155,6 +155,10 @@
     // contact form
     var ajaxContactForm = function() {
         $('#form-contact').each(function() {
+            var action = ($(this).attr('action') || '').toLowerCase();
+            if (action.indexOf('docs.google.com/forms') !== -1) {
+                return;
+            }
             $(this).validate({
                 submitHandler: function(form) {
                     var $form = $(form),
