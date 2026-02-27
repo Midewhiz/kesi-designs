@@ -83,10 +83,14 @@
     <!-- IG Tabs -->
     <section class="ig-tabs" aria-label="Instagram tabs">
       <div class="ig-tabs__inner">
-        <div class="ig-tabs__bar" role="tablist" aria-label="Content tabs">
-          <button class="ig-tab is-active" role="tab" aria-selected="true" data-tab="posts" title="Posts">▦</button>
-          <button class="ig-tab" role="tab" aria-selected="false" data-tab="carousels" title="Carousels">⧉</button>
-          <button class="ig-tab" role="tab" aria-selected="false" data-tab="system" title="System">⌁</button>
+        <div class="ig-tabs__bar ig-tabs__bar--labeled" role="tablist" aria-label="Content tabs">
+          <button class="ig-tab is-active" role="tab" aria-selected="true" data-tab="posts" title="Posts">
+            <span aria-hidden="true">&#9638;</span><span>Posts</span>
+          </button>
+          <button class="ig-tab" role="tab" aria-selected="false" data-tab="carousels" title="Carousels">
+            <span aria-hidden="true">&#10697;</span><span>Carousels</span>
+          </button>
+          <button class="ig-tab" role="tab" aria-selected="false" data-tab="system" title="System">&#8961;</button>
         </div>
 
         <label class="ig-search" aria-label="Search posts">
@@ -409,3 +413,4 @@
   <script src="asset/js/portfolio.js" defer></script>
 </body>
 </html>
+
