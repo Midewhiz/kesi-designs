@@ -60,6 +60,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const isValidEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
+  function validateContactFields() {
+    const name = nameEl.value.trim();
+    const email = mailEl.value.trim();
+    const phone = phoneEl.value.trim();
+    const message = messageEl.value.trim();
+
+    if (!name) {
+      openDialog("Error", "Please enter your name.");
+      nameEl.focus();
+      return false;
+    }
+    if (!email || !isValidEmail(email)) {
+      openDialog("Error", "Please enter a valid email.");
+      mailEl.focus();
+      return false;
+    }
+    if (!phone || phone.replace(/[^\d]/g, "").length < 8) {
+      openDialog("Error", "Please enter a valid phone number.");
+      phoneEl.focus();
+      return false;
+    }
+    if (!message) {
+      openDialog("Error", "Please enter a message.");
+      messageEl.focus();
+      return false;
+    }
+
+    return true;
+  }
+
   function buildWhatsAppMessage() {
     const name = nameEl.value.trim() || "-";
     const email = mailEl.value.trim() || "-";
@@ -81,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   waBtn?.addEventListener("click", (e) => {
     e.preventDefault();
+    if (!validateContactFields()) return;
 
     const baseUrl = waBtn.getAttribute("href") || "https://wa.me/2347072352162";
     const message = buildWhatsAppMessage();
@@ -91,15 +122,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   form.addEventListener("submit", (e) => {
-    const name = nameEl.value.trim();
-    const email = mailEl.value.trim();
-    const phone = phoneEl.value.trim();
-    const message = messageEl.value.trim();
-
-    if (!name) { e.preventDefault(); return openDialog("Error", "Please enter your name."); }
-    if (!email || !isValidEmail(email)) { e.preventDefault(); return openDialog("Error", "Please enter a valid email."); }
-    if (!phone || phone.replace(/[^\d]/g, "").length < 8) { e.preventDefault(); return openDialog("Error", "Please enter a valid phone number."); }
-    if (!message) { e.preventDefault(); return openDialog("Error", "Please enter a message."); }
+    if (!validateContactFields()) {
+      e.preventDefault();
+      return;
+    }
 
     // UI loading state
     if (submitBtn) {
