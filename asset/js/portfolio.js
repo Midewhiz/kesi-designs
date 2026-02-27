@@ -37,6 +37,7 @@
   let activeIndex = 0;
   let slides = [];
   let slideIndex = 0;
+  let wheelCooldownUntil = 0;
 
   // ---------- Helpers ----------
   const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
@@ -83,15 +84,32 @@
   }
 
   function renderSlide() {
-    viewerMedia.innerHTML = "";
+    const imageAlt = (activePostEl?.dataset.title || "Post") + " - full view";
+    let track = viewerMedia.querySelector(".ig-viewer__track");
+    const needsRebuild = !track || track.children.length !== slides.length;
 
-    const img = document.createElement("img");
-    img.alt = (activePostEl?.dataset.title || "Post") + " — full view";
-    img.src = slides[slideIndex];
+    if (needsRebuild) {
+      viewerMedia.innerHTML = "";
+      track = document.createElement("div");
+      track.className = "ig-viewer__track";
 
-    viewerMedia.appendChild(img);
+      slides.forEach((src) => {
+        const slide = document.createElement("div");
+        slide.className = "ig-viewer__slide";
 
-    // dots
+        const img = document.createElement("img");
+        img.alt = imageAlt;
+        img.src = src;
+
+        slide.appendChild(img);
+        track.appendChild(slide);
+      });
+
+      viewerMedia.appendChild(track);
+    }
+
+    track.style.transform = `translateX(-${slideIndex * 100}%)`;
+
     if (slides.length > 1) {
       Array.from(viewerDots.children).forEach((dot, i) => {
         dot.classList.toggle("is-active", i === slideIndex);
@@ -252,6 +270,24 @@
       else prevSlide();
     }
   }, { passive: true });
+
+  viewerMedia.addEventListener("wheel", (e) => {
+    if (!isModalOpen() || slides.length <= 1) return;
+
+    const deltaX = e.deltaX || 0;
+    const deltaY = e.deltaY || 0;
+    const delta = Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
+    if (Math.abs(delta) < 18) return;
+
+    e.preventDefault();
+
+    const now = Date.now();
+    if (now < wheelCooldownUntil) return;
+    wheelCooldownUntil = now + 280;
+
+    if (delta > 0) nextSlide();
+    else prevSlide();
+  }, { passive: false });
 
   // ---------- Tabs filter ----------
   function setActiveTab(tabName) {
