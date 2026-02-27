@@ -443,7 +443,7 @@ button{ border:0; background:none; cursor:pointer; }
   width:100%;
   height:100%;
   display:flex;
-  transition:transform .35s ease;
+  transition:transform .32s linear;
   will-change:transform;
 }
 
@@ -454,6 +454,11 @@ button{ border:0; background:none; cursor:pointer; }
   display:flex;
   align-items:center;
   justify-content:center;
+  overflow:hidden;
+}
+
+.ig-viewer__media.is-carousel .ig-viewer__slide{
+  justify-content:flex-start;
 }
 
 /* ✅ HARD OVERRIDE against any older rules */
@@ -466,6 +471,16 @@ button{ border:0; background:none; cursor:pointer; }
   object-fit: contain !important;  /* ✅ shows full 1080x1350 */
   border-radius: 0;
   display:block;
+}
+
+/* Carousel mode must always fill each slide edge-to-edge (no black gap) */
+#viewerMedia.is-carousel img{
+  width:100% !important;
+  height:100% !important;
+  max-width:100% !important;
+  max-height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
 }
 
 /* Optional: if you want the image slightly larger on desktop */
