@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const budgetEl = document.getElementById("budget");
 
   const submitBtn = document.getElementById("contactSubmitBtn");
+  const waBtn = form?.querySelector(".wa-contact-btn");
   const budgetItems = document.querySelectorAll("#budget-choices .choose-item");
 
   // Dialog
@@ -58,6 +59,36 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const isValidEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+  function buildWhatsAppMessage() {
+    const name = nameEl.value.trim() || "-";
+    const email = mailEl.value.trim() || "-";
+    const phone = phoneEl.value.trim() || "-";
+    const message = messageEl.value.trim() || "-";
+    const budget = budgetEl.value.trim() || "-";
+
+    return [
+      "Hello Kesi, I would like to discuss a project.",
+      "",
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Phone: ${phone}`,
+      `Budget: ${budget}`,
+      "Project details:",
+      message
+    ].join("\n");
+  }
+
+  waBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const baseUrl = waBtn.getAttribute("href") || "https://wa.me/2347072352162";
+    const message = buildWhatsAppMessage();
+    const sep = baseUrl.includes("?") ? "&" : "?";
+    const waUrl = `${baseUrl}${sep}text=${encodeURIComponent(message)}`;
+
+    window.open(waUrl, "_blank", "noopener,noreferrer");
+  });
 
   form.addEventListener("submit", (e) => {
     const name = nameEl.value.trim();
