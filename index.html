@@ -367,11 +367,11 @@
                                 </div>
                                 <div class="works-filter-wrap">
                                     <div class="works-tabs" role="tablist" aria-label="Filter selected works">
-                                        <!-- <button class="works-tab-btn text-body-2 active" type="button" data-work-filter="all" role="tab" aria-selected="true">All</button>
+                                        <button class="works-tab-btn text-body-2 active" type="button" data-work-filter="all" role="tab" aria-selected="true">All</button>
                                         <button class="works-tab-btn text-body-2" type="button" data-work-filter="social-media-designs" role="tab" aria-selected="false">Social Media Designs</button>
                                         <button class="works-tab-btn text-body-2" type="button" data-work-filter="web-design" role="tab" aria-selected="false">Web Design</button>
                                         <button class="works-tab-btn text-body-2" type="button" data-work-filter="brand-identity" role="tab" aria-selected="false">Brand Identity</button>
-                                    </div> -->
+                                    </div>
                                 </div>
                                 <div class="works-wrap" id="worksWrap" data-all-limit="4">
                                     <div class="works-item scrolling-effect effectLeft" data-work-category="social-media-designs">
@@ -1043,10 +1043,14 @@
                 </div>
             </div>
 
-            <dialog id="contactDialog">
-                <h3 id="contactDialogTitle" style="margin:0 0 8px 0;">Success</h3>
-                <p id="contactDialogText" style="margin:0 0 14px 0;">Message sent.</p>
-                <button id="contactDialogCloseBtn" type="button">Okay</button>
+            <dialog id="contactDialog" class="contact-dialog" aria-labelledby="contactDialogTitle" aria-describedby="contactDialogText">
+                <div class="contact-dialog-badge" id="contactDialogBadge" aria-hidden="true">
+                    <span class="contact-dialog-badge-dot"></span>
+                    <span class="contact-dialog-badge-text">Notice</span>
+                </div>
+                <h3 id="contactDialogTitle" class="contact-dialog-title">Success</h3>
+                <p id="contactDialogText" class="contact-dialog-text">Message sent.</p>
+                <button id="contactDialogCloseBtn" class="contact-dialog-close" type="button">Okay</button>
             </dialog>
 
             <iframe name="gform_iframe" id="gform_iframe" style="display:none;"></iframe>
