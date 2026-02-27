@@ -51,6 +51,7 @@
     modal.setAttribute("aria-hidden", "false");
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
+    updateCarouselViewport();
   }
 
   function closeModal() {
@@ -63,6 +64,35 @@
     slideIndex = 0;
     viewerMedia.innerHTML = "";
     viewerDots.innerHTML = "";
+    viewerMedia.classList.remove("is-carousel");
+    viewerMedia.style.width = "";
+    viewerMedia.style.height = "";
+  }
+
+  function updateCarouselViewport() {
+    if (!viewerMedia.classList.contains("is-carousel")) {
+      viewerMedia.style.width = "";
+      viewerMedia.style.height = "";
+      return;
+    }
+
+    const stage = viewerMedia.closest(".ig-viewer__stage");
+    if (!stage) return;
+
+    const stageRect = stage.getBoundingClientRect();
+    if (!stageRect.width || !stageRect.height) return;
+
+    const ratio = 1080 / 1350; // 4:5 portrait
+    let width = stageRect.height * ratio;
+    let height = stageRect.height;
+
+    if (width > stageRect.width) {
+      width = stageRect.width;
+      height = width / ratio;
+    }
+
+    viewerMedia.style.width = `${Math.floor(width)}px`;
+    viewerMedia.style.height = `${Math.floor(height)}px`;
   }
 
   function setNavDisabled() {
@@ -161,6 +191,8 @@
     } else {
       slides = el.dataset.image ? [el.dataset.image] : [];
     }
+    viewerMedia.classList.toggle("is-carousel", slides.length > 1);
+    updateCarouselViewport();
     slideIndex = 0;
 
     renderDots();
@@ -219,6 +251,8 @@
     if (e.key === "ArrowRight") nextSlide();
     if (e.key === "ArrowLeft") prevSlide();
   });
+
+  window.addEventListener("resize", updateCarouselViewport);
 
   // Global action buttons outside modal
   document.querySelectorAll('[data-action="scrollTop"]').forEach((btn) => {
