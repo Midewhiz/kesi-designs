@@ -3205,8 +3205,17 @@ header .mobile-menu {
 }
 
 .indicators .list-tags {
-    max-width: 363px;
+    width: 100%;
+    max-width: none;
     margin-bottom: 64px;
+}
+
+.indicators .list-tags li {
+    flex: 0 0 auto;
+}
+
+.indicators .list-tags a {
+    white-space: nowrap;
 }
 
 .indicators .indicators-wrap {
@@ -5165,3 +5174,139 @@ header .mobile-menu {
   border-radius:12px;
   font-weight:700;
 }
+/* Contact Story Form Override */
+.section-contact .section-contact-inner {
+    background: rgba(20, 20, 20, 0.86);
+    backdrop-filter: blur(8px);
+}
+
+.section-contact .section-contact-inner .heading {
+    margin-bottom: 28px;
+    font-size: clamp(42px, 5.2vw, 72px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.form-contact-story {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-contact-story .story-line {
+    margin: 0;
+    font-size: clamp(24px, 3.1vw, 48px);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: #f3f3f3;
+}
+
+.form-contact-story .story-line-budget {
+    margin-top: 4px;
+}
+
+.form-contact-story .story-input-wrap {
+    display: inline-flex;
+    min-width: 190px;
+    margin: 0 8px;
+    vertical-align: middle;
+}
+
+.form-contact-story .story-input-wrap input {
+    width: 100%;
+    height: 58px;
+    padding: 0 0 8px;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+    border-radius: 0;
+    background: transparent;
+    color: #ffffff;
+    font-size: clamp(20px, 2vw, 34px);
+    line-height: 1.1;
+}
+
+.form-contact-story .story-input-wrap input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.form-contact-story .story-input-wrap input:focus {
+    border-bottom-color: var(--primary);
+}
+
+.form-contact-story .story-message-wrap {
+    margin-top: 2px;
+}
+
+.form-contact-story .story-message-wrap .story-label {
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-contact-story .story-message-wrap textarea {
+    min-height: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 18px;
+    padding: 16px 18px;
+    background: rgba(0, 0, 0, 0.28);
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.form-contact-story .story-message-wrap textarea::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.form-contact-story .pricing-list {
+    max-width: 100%;
+    margin: 0 0 20px;
+    gap: 12px;
+}
+
+.form-contact-story .pricing-list .item {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.form-contact-story .pricing-list .item:hover,
+.form-contact-story .pricing-list .item.active {
+    border-color: rgba(243, 80, 15, 0.8);
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(243, 80, 15, 0.85) 0%, rgba(251, 143, 16, 0.8) 100%);
+}
+
+.form-contact-story .bot-btn {
+    margin-top: 2px;
+}
+
+@media (max-width: 991px) {
+    .section-contact .section-contact-inner {
+        padding: 34px 22px 36px;
+    }
+
+    .form-contact-story .story-input-wrap {
+        display: block;
+        width: 100%;
+        margin: 8px 0;
+    }
+
+    .form-contact-story .story-input-wrap input {
+        height: 50px;
+        font-size: 24px;
+    }
+
+    .form-contact-story .story-line {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 575px) {
+    .form-contact-story .story-line {
+        font-size: 24px;
+    }
+
+    .form-contact-story .story-message-wrap textarea {
+        min-height: 110px;
+    }
+}
+
