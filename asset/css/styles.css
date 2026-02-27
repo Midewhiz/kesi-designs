@@ -5150,30 +5150,6 @@ header .mobile-menu {
 
 
 [hidden]{display:none!important;}
-.modal-backdrop{
-  position:fixed; inset:0;
-  background:rgba(0,0,0,.7);
-  display:grid; place-items:center;
-  padding:16px; z-index:9999;
-}
-.modal{
-  width:min(420px, 100%);
-  background:#0b0c10;
-  border:1px solid rgba(255,255,255,.14);
-  border-radius:18px;
-  padding:18px;
-  color:rgba(255,255,255,.92);
-}
-.modal p{color:rgba(255,255,255,.65); line-height:1.5;}
-.modal-btn{
-  margin-top:12px;
-  border:0; cursor:pointer;
-  background:#b6ff3b;
-  color:#050607;
-  padding:10px 14px;
-  border-radius:12px;
-  font-weight:700;
-}
 /* Contact Story Form Override */
 .section-contact .section-contact-inner {
     background: rgba(20, 20, 20, 0.86);
