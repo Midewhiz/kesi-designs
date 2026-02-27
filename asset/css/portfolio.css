@@ -223,6 +223,21 @@ button{ border:0; background:none; cursor:pointer; }
   background:rgba(255,255,255,.04);
   color:var(--text);
 }
+.ig-tabs__bar--labeled .ig-tab{
+  width:auto;
+  min-width:40px;
+  padding:0 12px;
+  gap:8px;
+}
+.ig-tabs__bar--labeled .ig-tab span{
+  display:inline-flex;
+  align-items:center;
+}
+.ig-tabs__bar--labeled .ig-tab span:last-child{
+  font-size:12px;
+  line-height:1;
+  font-weight:600;
+}
 .ig-search{
   height:34px;
   display:flex;
@@ -419,8 +434,26 @@ button{ border:0; background:none; cursor:pointer; }
   display:flex;
   align-items:center;
   justify-content:center;
-  padding: 10px;            /* ✅ reduced padding = more room */
+  padding:0;
   overflow:hidden;
+  position:relative;
+}
+
+.ig-viewer__track{
+  width:100%;
+  height:100%;
+  display:flex;
+  transition:transform .35s ease;
+  will-change:transform;
+}
+
+.ig-viewer__slide{
+  flex:0 0 100%;
+  min-width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 /* ✅ HARD OVERRIDE against any older rules */
@@ -431,14 +464,14 @@ button{ border:0; background:none; cursor:pointer; }
   max-width: 100% !important;
   max-height: 100% !important;
   object-fit: contain !important;  /* ✅ shows full 1080x1350 */
-  border-radius: 8px;
+  border-radius: 0;
   display:block;
 }
 
 /* Optional: if you want the image slightly larger on desktop */
 @media (min-width: 900px){
   .ig-viewer__media{
-    padding: 8px;           /* ✅ even more room */
+    padding:0;
   }
 }
 
