@@ -266,11 +266,11 @@
                             <div class="main-title">
                                 <div class="text-body-1 dot-before subtitle">Introduction</div>
                                 <h1 class="title split-text effect-right">People decide before they read. They trust before they test.</h1>
-                                <div class="text-body-2 text">If your brand isn’t understood instantly, you lose momentum before the first click. Most businesses don’t struggle because their offer/product is not good.
+                                <div class="text-body-2 text">If your brand isnâ€™t understood instantly, you lose momentum before the first click. Most businesses donâ€™t struggle because their offer/product is not good.
                                 
-                                They struggle because their positioning isn’t visible.
+                                They struggle because their positioning isnâ€™t visible.
                                 
-                                <b><i>Design fixes that, when it’s done intentionally.</i></b></div>
+                                <b><i>Design fixes that, when itâ€™s done intentionally.</i></b></div>
                             </div>
                             <div class="indicators">
                                 <ul class="list-tags">
@@ -365,8 +365,16 @@
                                         <span class="banner-img"><span class="dot-circle"></span></span>
                                     </div>
                                 </div>
-                                <div class="works-wrap">
-                                    <div class="works-item scrolling-effect effectLeft">
+                                <div class="works-filter-wrap">
+                                    <div class="works-tabs" role="tablist" aria-label="Filter selected works">
+                                        <button class="works-tab-btn text-body-2 active" type="button" data-work-filter="all" role="tab" aria-selected="true">All</button>
+                                        <button class="works-tab-btn text-body-2" type="button" data-work-filter="social-media-designs" role="tab" aria-selected="false">Social Media Designs</button>
+                                        <button class="works-tab-btn text-body-2" type="button" data-work-filter="web-design" role="tab" aria-selected="false">Web Design</button>
+                                        <button class="works-tab-btn text-body-2" type="button" data-work-filter="brand-identity" role="tab" aria-selected="false">Brand Identity</button>
+                                    </div>
+                                </div>
+                                <div class="works-wrap" id="worksWrap" data-all-limit="4">
+                                    <div class="works-item scrolling-effect effectLeft" data-work-category="social-media-designs">
                                         <a class="image" href="julatamo.html">
                                             <img class="lazyload" src="asset/images/portfolio/Julatamo/julatamo_val_Bali.jpg" data-src="asset/images/section/julatamo_banner.png" alt="">
                                         </a>
@@ -383,7 +391,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="works-item scrolling-effect effectLeft">
+                                    <div class="works-item scrolling-effect effectLeft" data-work-category="social-media-designs">
                                         <a class="image" href="quantum.html">
                                             <img class="lazyload" data-src="asset/images/section/quantum_banner.png" alt="">
                                         </a>
@@ -400,7 +408,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="works-item scrolling-effect effectLeft">
+                                    <div class="works-item scrolling-effect effectLeft" data-work-category="brand-identity web-design">
                                         <a class="image" href="techwriteable.html">
                                             <img class="lazyload" data-src="asset/images/section/tw_banner.png" alt="">
                                         </a>
@@ -419,7 +427,7 @@
                                     </div>
 
                                     
-                                    <div class="works-item scrolling-effect effectLeft">
+                                    <div class="works-item scrolling-effect effectLeft" data-work-category="social-media-designs">
                                         <a class="image" href="letsgivefoundation.html">
                                             <img src="asset/images/section/letsgivefoundation_banner.png" data-src="asset/images/section/letsgivefoundation_banner.png" alt="">
                                         </a>
@@ -436,7 +444,10 @@
                                             </a>
                                         </div>
                                     </div>
-
+                                    <p class="works-empty text-body-2" id="worksEmptyState" hidden>No projects in this category yet.</p>
+                                </div>
+                                <div class="works-more-wrap">
+                                    <button class="works-view-more text-body-2" type="button" id="worksViewMoreBtn">View More</button>
                                 </div>
                             </div>
                         </div>
@@ -548,8 +559,8 @@
                                 <div class="heading">
                                     <div class="text-body-2 dot-before subtitle fw-medium">About Me</div>
                                     <div>
-                                        <h2 class="fw-medium title text-color-change"> I’m a creative designer with over 2 years of experience crafting designs that resonate with target audiences and moves the market.</h2>
-                                        <div class="text-body-2 text">I’ve worked with brands at different stages, from refining what already exists to building from zero. I’ve seen what happens when design is treated as surface-level polish. And I’ve seen what happens when it’s treated as strategy. The difference is measurable.</div>
+                                        <h2 class="fw-medium title text-color-change"> Iâ€™m a creative designer with over 2 years of experience crafting designs that resonate with target audiences and moves the market.</h2>
+                                        <div class="text-body-2 text">Iâ€™ve worked with brands at different stages, from refining what already exists to building from zero. Iâ€™ve seen what happens when design is treated as surface-level polish. And Iâ€™ve seen what happens when itâ€™s treated as strategy. The difference is measurable.</div>
                                     </div>
                                 </div>
                                 <div class="box-playground">
@@ -749,7 +760,7 @@
                                 <div class="wrap">
                                     <h2 class="fw-medium title">Clarify the Goal <br> & Audience</h2>
                                     <div class="text-body-2 fw-medium text">
-                                    I define the exact outcome (click, call, buy, register) and who it’s for, then translate that into a single, clear message.
+                                    I define the exact outcome (click, call, buy, register) and who itâ€™s for, then translate that into a single, clear message.
                                     </div>
                                 </div>
                                 </div>
@@ -785,7 +796,7 @@
                                 <div class="wrap">
                                     <h2 class="fw-medium title">Structure the <br> Visual Hierarchy</h2>
                                     <div class="text-body-2 fw-medium text">
-                                    I map the reading flow: headline → key benefit → proof → details → CTA. This keeps the flyer fast to understand and hard to ignore.
+                                    I map the reading flow: headline â†’ key benefit â†’ proof â†’ details â†’ CTA. This keeps the flyer fast to understand and hard to ignore.
                                     </div>
                                 </div>
                                 </div>
@@ -803,7 +814,7 @@
                                 <div class="wrap">
                                     <h2 class="fw-medium title">Design, Test <br> & Deliver</h2>
                                     <div class="text-body-2 fw-medium text">
-                                    I design multiple directions, run quick “5-second” clarity checks, then polish, proof, and export for the right platform sizes (IG, print, web).
+                                    I design multiple directions, run quick â€œ5-secondâ€ clarity checks, then polish, proof, and export for the right platform sizes (IG, print, web).
                                     </div>
                                 </div>
                                 </div>
@@ -836,14 +847,14 @@
                 <div class="item active accordion-item scrolling-effect effectLeft" data-bs-toggle="collapse" role="button"
                     data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                     <h6 class="accordion-head fw-medium">
-                    What’s your process for social media flyer design?
+                    Whatâ€™s your process for social media flyer design?
                     <span class="icon"></span>
                     </h6>
                     <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#accordion-1">
                     <p class="text-body-2 fw-medium">
                         I start with clarity: the goal (click, call, buy, register) and the audience. Then I translate the offer into a
                         simple message, build a strong hierarchy from headline to benefit to proof to details to CTA, and design for fast
-                        understanding. If your brand isn’t understood instantly, you lose momentum, so my process is built to prevent that.
+                        understanding. If your brand isnâ€™t understood instantly, you lose momentum, so my process is built to prevent that.
                     </p>
                     </div>
                 </div>
@@ -884,7 +895,7 @@
                 <div class="item accordion-item collapsed scrolling-effect effectLeft" data-bs-toggle="collapse" role="button"
                     data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
                     <h6 class="accordion-head fw-medium">
-                    What if I don’t like the first design direction?
+                    What if I donâ€™t like the first design direction?
                     <span class="icon"></span>
                     </h6>
                     <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#accordion-1">
@@ -925,119 +936,122 @@
         <!-- /section-faqs -->
 
         <!-- /section-faqs -->
-               <!-- section-contact -->
-                <section class="section-contact" id="contact">
-                <div class="tf-container">
-                    <div class="row">
+                       <!-- section-contact -->
+        <section class="section-contact" id="contact">
+            <div class="tf-container">
+                <div class="row">
                     <div class="offset-xxl-5 col-xxl-7 offset-xl-4 col-xl-7 offset-lg-2 col-lg-8">
                         <div class="section-contact-inner">
-                        <h1 class="fw-medium heading">Contact For <br> Work</h1>
+                            <h1 class="fw-medium heading">Let's Build Something Great</h1>
 
-                        <!-- IMPORTANT: action="#" because we're using JS + Google Forms -->
-                        <form class="form-contact" id="form-contact"
-                        method="POST"
-                        target="gform_iframe"
-                        action="https://docs.google.com/forms/d/e/1FAIpQLSeFjaqte53PyBc8r_-80yCSdX0De3HrqZtRs_j1RAOOrzvqKA/formResponse"
-                        novalidate
-                        >
-
-                        <fieldset class="fiel-name">
-                            <label class="text-xs-2">Your Name</label>
-                            <input
-                            type="text"
-                            name="entry.2005620554"
-                            id="name"
-                            placeholder="Enter your name"
-                            aria-required="true"
-                            required
-                            />
-                        </fieldset>
-
-                        <fieldset class="fiel-mail">
-                            <label class="text-xs-2">Your Email</label>
-                            <input
-                            type="email"
-                            name="entry.1045781291"
-                            id="mail"
-                            placeholder="Enter the Email"
-                            aria-required="true"
-                            required
-                            />
-                        </fieldset>
-
-                        <fieldset class="fiel-phone">
-                            <label class="text-xs-2">Your Phone</label>
-                            <input
-                            type="text"
-                            name="entry.1166974658"
-                            id="phone"
-                            placeholder="Enter your phone number"
-                            aria-required="true"
-                            required
-                            />
-                        </fieldset>
-
-                        <fieldset class="fiel-text">
-                            <label class="text-xs-2">Messenger</label>
-                            <textarea
-                            id="message"
-                            name="entry.839337160"
-                            aria-required="true"
-                            required
-                            ></textarea>
-                        </fieldset>
-
-                        <!-- Budget selection (kept your design) -->
-                        <div class="pricing-list list-choose" id="budget-choices">
-                        <div class="item text-body-2 choose-item font-poppins" role="button" tabindex="0">&lt; $1,000</div>
-                        <div class="item text-body-2 choose-item font-poppins" role="button" tabindex="0">$1,000 - $5,000</div>
-                        <div class="item text-body-2 choose-item font-poppins" role="button" tabindex="0">$5,000 - $10,000</div>
-                        <div class="item text-body-2 choose-item font-poppins" role="button" tabindex="0">$10,000 - $20,000</div>
-                        <div class="item text-body-2 choose-item font-poppins" role="button" tabindex="0">&gt; $20,000</div>
-                        </div>
-
-                        <!-- ✅ ONE budget hidden input ONLY -->
-                        <input type="hidden" name="entry.1558244046" id="budget" value="">
-
-                        <div class="bot-btn send-wrap">
-                            <button type="submit" class="text-body-2 fw-medium" id="contactSubmitBtn">
-                            <span class="font-poppins flex-grow-1 text-start">Get Started</span>
-                            <i class="icon icon-arrow-top-right"></i>
-                            </button>
-                            <a
-                            href="https://wa.me/2347072352162"
-                            class="wa-contact-btn"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Chat on WhatsApp"
+                            <form class="form-contact form-contact-story" id="form-contact"
+                                method="POST"
+                                target="gform_iframe"
+                                action="https://docs.google.com/forms/d/e/1FAIpQLSeFjaqte53PyBc8r_-80yCSdX0De3HrqZtRs_j1RAOOrzvqKA/formResponse"
+                                novalidate
                             >
-                            <span class="font-poppins flex-grow-1 text-start">Chat on WhatsApp</span>
-                            <span class="wa-icon" aria-hidden="true">
-                                <svg viewBox="0 0 32 32" width="24" height="24" focusable="false">
-                                    <path fill="currentColor" d="M19.11 17.17c-.28-.14-1.64-.81-1.89-.9-.25-.09-.43-.14-.61.14-.18.28-.7.9-.86 1.08-.16.18-.32.21-.6.07-.28-.14-1.16-.43-2.21-1.38-.81-.72-1.36-1.62-1.52-1.89-.16-.28-.02-.42.12-.56.12-.12.28-.32.42-.48.14-.16.19-.28.28-.46.09-.18.05-.35-.02-.49-.07-.14-.61-1.48-.84-2.03-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.46.07-.7.35-.24.28-.92.9-.92 2.18s.94 2.52 1.07 2.69c.14.18 1.84 2.8 4.47 3.93.62.27 1.11.43 1.49.55.63.2 1.2.17 1.65.1.5-.07 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.19-.53-.33Z"/>
-                                    <path fill="currentColor" d="M27.26 4.69C24.23 1.67 20.2 0 15.93 0 7.12 0 0 7.14 0 15.95c0 2.81.73 5.56 2.12 7.98L0 32l8.27-2.17c2.31 1.26 4.92 1.92 7.63 1.92h.01c8.8 0 15.95-7.15 15.95-15.95 0-4.26-1.66-8.27-4.6-11.11Zm-11.35 24.4h-.01c-2.38 0-4.72-.64-6.76-1.86l-.49-.29-4.9 1.28 1.31-4.78-.32-.49a13.18 13.18 0 0 1-2.02-7c0-7.27 5.92-13.19 13.2-13.19 3.52 0 6.83 1.37 9.32 3.86a13.1 13.1 0 0 1 3.86 9.32c0 7.28-5.92 13.2-13.19 13.2Z"/>
-                                </svg>
-                            </span>
-                            </a>
-                        </div>
+                                <p class="story-line">
+                                    Hi Kesi, my name is
+                                    <span class="story-input-wrap">
+                                        <label for="name" class="visually-hidden">Your Name</label>
+                                        <input
+                                            type="text"
+                                            name="entry.2005620554"
+                                            id="name"
+                                            placeholder="Your name"
+                                            aria-required="true"
+                                            required
+                                        />
+                                    </span>
+                                    and my email is
+                                    <span class="story-input-wrap">
+                                        <label for="mail" class="visually-hidden">Your Email</label>
+                                        <input
+                                            type="email"
+                                            name="entry.1045781291"
+                                            id="mail"
+                                            placeholder="your@email.com"
+                                            aria-required="true"
+                                            required
+                                        />
+                                    </span>
+                                    .
+                                </p>
 
-                        </form>
+                                <p class="story-line">
+                                    You can also reach me by phone on
+                                    <span class="story-input-wrap">
+                                        <label for="phone" class="visually-hidden">Your Phone</label>
+                                        <input
+                                            type="text"
+                                            name="entry.1166974658"
+                                            id="phone"
+                                            placeholder="+234..."
+                                            aria-required="true"
+                                            required
+                                        />
+                                    </span>
+                                    and here is what I need:
+                                </p>
+
+                                <div class="story-message-wrap">
+                                    <label for="message" class="story-label text-xs-2">Project Details</label>
+                                    <textarea
+                                        id="message"
+                                        name="entry.839337160"
+                                        placeholder="Tell me about the goals, audience, and deliverables..."
+                                        aria-required="true"
+                                        required
+                                    ></textarea>
+                                </div>
+
+                                <p class="story-line story-line-budget">Our budget range for this project is:</p>
+                                <div class="pricing-list list-choose" id="budget-choices">
+                                    <div class="item text-body-2 choose-item font-poppins" role="button" tabindex="0">&lt; $1,000</div>
+                                    <div class="item text-body-2 choose-item font-poppins" role="button" tabindex="0">$1,000 - $5,000</div>
+                                    <div class="item text-body-2 choose-item font-poppins" role="button" tabindex="0">$5,000 - $10,000</div>
+                                    <div class="item text-body-2 choose-item font-poppins" role="button" tabindex="0">$10,000 - $20,000</div>
+                                    <div class="item text-body-2 choose-item font-poppins" role="button" tabindex="0">&gt; $20,000</div>
+                                </div>
+
+                                <input type="hidden" name="entry.1558244046" id="budget" value="">
+
+                                <div class="bot-btn send-wrap">
+                                    <button type="submit" class="text-body-2 fw-medium" id="contactSubmitBtn">
+                                        <span class="font-poppins flex-grow-1 text-start">Get Started</span>
+                                        <i class="icon icon-arrow-top-right"></i>
+                                    </button>
+                                    <a
+                                        href="https://wa.me/2347072352162"
+                                        class="wa-contact-btn"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label="Chat on WhatsApp"
+                                    >
+                                        <span class="font-poppins flex-grow-1 text-start">Chat on WhatsApp</span>
+                                        <span class="wa-icon" aria-hidden="true">
+                                            <svg viewBox="0 0 32 32" width="24" height="24" focusable="false">
+                                                <path fill="currentColor" d="M19.11 17.17c-.28-.14-1.64-.81-1.89-.9-.25-.09-.43-.14-.61.14-.18.28-.7.9-.86 1.08-.16.18-.32.21-.6.07-.28-.14-1.16-.43-2.21-1.38-.81-.72-1.36-1.62-1.52-1.89-.16-.28-.02-.42.12-.56.12-.12.28-.32.42-.48.14-.16.19-.28.28-.46.09-.18.05-.35-.02-.49-.07-.14-.61-1.48-.84-2.03-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.46.07-.7.35-.24.28-.92.9-.92 2.18s.94 2.52 1.07 2.69c.14.18 1.84 2.8 4.47 3.93.62.27 1.11.43 1.49.55.63.2 1.2.17 1.65.1.5-.07 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.19-.53-.33Z"/>
+                                                <path fill="currentColor" d="M27.26 4.69C24.23 1.67 20.2 0 15.93 0 7.12 0 0 7.14 0 15.95c0 2.81.73 5.56 2.12 7.98L0 32l8.27-2.17c2.31 1.26 4.92 1.92 7.63 1.92h.01c8.8 0 15.95-7.15 15.95-15.95 0-4.26-1.66-8.27-4.6-11.11Zm-11.35 24.4h-.01c-2.38 0-4.72-.64-6.76-1.86l-.49-.29-4.9 1.28 1.31-4.78-.32-.49a13.18 13.18 0 0 1-2.02-7c0-7.27 5.92-13.19 13.2-13.19 3.52 0 6.83 1.37 9.32 3.86a13.1 13.1 0 0 1 3.86 9.32c0 7.28-5.92 13.2-13.19 13.2Z"/>
+                                            </svg>
+                                        </span>
+                                    </a>
+                                </div>
+                            </form>
                         </div>
-                    </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- ✅ Native success/error dialog (no CSS required) -->
-                <dialog id="contactDialog">
-                    <h3 id="contactDialogTitle" style="margin:0 0 8px 0;">Success</h3>
-                    <p id="contactDialogText" style="margin:0 0 14px 0;">Message sent.</p>
-                    <button id="contactDialogCloseBtn" type="button">Okay</button>
-                </dialog>
+            <dialog id="contactDialog">
+                <h3 id="contactDialogTitle" style="margin:0 0 8px 0;">Success</h3>
+                <p id="contactDialogText" style="margin:0 0 14px 0;">Message sent.</p>
+                <button id="contactDialogCloseBtn" type="button">Okay</button>
+            </dialog>
 
-                <iframe name="gform_iframe" id="gform_iframe" style="display:none;"></iframe>
-
-                </section>
-                <!-- /section-contact -->
+            <iframe name="gform_iframe" id="gform_iframe" style="display:none;"></iframe>
+        </section>
+        <!-- /section-contact -->
 
             </div>
             <!-- /wrapper-content -->
@@ -1136,8 +1150,171 @@
     <script src="asset/js/plugin.js"></script>
     <script src="asset/js/lightbox.min.js"></script>
     <script src="asset/js/main.js"></script>
+    <style>
+        .works-filter-wrap {
+            margin-bottom: 24px;
+        }
+
+        .works-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 14px;
+            border-radius: 24px;
+            background: rgba(17, 17, 17, 0.85);
+            box-shadow: 0 0 20px 0 rgba(103, 103, 103, 0.2) inset;
+            backdrop-filter: blur(16px);
+        }
+
+        .works-tab-btn {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.02);
+            color: rgba(255, 255, 255, 0.7);
+            border-radius: 999px;
+            padding: 10px 18px;
+            transition: all 0.3s ease;
+        }
+
+        .works-tab-btn:hover,
+        .works-tab-btn.active {
+            color: #ffffff;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .works-more-wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .works-view-more {
+            min-width: 160px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.03);
+            color: #fff;
+            border-radius: 999px;
+            padding: 12px 24px;
+            transition: all 0.3s ease;
+        }
+
+        .works-view-more:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .works-empty {
+            display: none;
+            margin: 8px 0 0;
+            color: rgba(255, 255, 255, 0.72);
+            text-align: center;
+        }
+
+        .works-item[hidden] {
+            display: none !important;
+        }
+    </style>
+    <script>
+        (function () {
+            var worksWrap = document.getElementById("worksWrap");
+            if (!worksWrap) return;
+
+            var tabButtons = document.querySelectorAll(".works-tab-btn");
+            var items = Array.prototype.slice.call(worksWrap.querySelectorAll(".works-item"));
+            var viewMoreBtn = document.getElementById("worksViewMoreBtn");
+            var emptyState = document.getElementById("worksEmptyState");
+            var allLimit = parseInt(worksWrap.getAttribute("data-all-limit"), 10) || 4;
+            var currentFilter = "all";
+            var expandedAll = false;
+            var categoryOrder = ["social-media-designs", "web-design", "brand-identity"];
+
+            function matchesFilter(item, filter) {
+                if (filter === "all") return true;
+                var categories = (item.getAttribute("data-work-category") || "").split(/\s+/);
+                return categories.indexOf(filter) !== -1;
+            }
+
+            function applyFilter(filter) {
+                currentFilter = filter;
+                var matchedItems = [];
+
+                if (filter === "all" && !expandedAll) {
+                    var selected = [];
+
+                    categoryOrder.forEach(function (category) {
+                        var found = items.find(function (item) {
+                            return (item.getAttribute("data-work-category") || "").split(/\s+/).indexOf(category) !== -1;
+                        });
+                        if (found && selected.indexOf(found) === -1) selected.push(found);
+                    });
+
+                    if (selected.length < allLimit) {
+                        items.forEach(function (item) {
+                            if (selected.length >= allLimit) return;
+                            if (selected.indexOf(item) === -1) selected.push(item);
+                        });
+                    }
+                    matchedItems = selected;
+                } else {
+                    items.forEach(function (item) {
+                        if (matchesFilter(item, filter)) matchedItems.push(item);
+                    });
+                }
+
+                items.forEach(function (item) {
+                    item.hidden = true;
+                });
+
+                matchedItems.forEach(function (item, index) {
+                    var shouldShow = filter !== "all" || expandedAll || index < allLimit;
+                    item.hidden = !shouldShow;
+                });
+
+                if (emptyState) {
+                    emptyState.hidden = matchedItems.length !== 0;
+                    emptyState.style.display = matchedItems.length === 0 ? "block" : "none";
+                }
+
+                if (!viewMoreBtn) return;
+                if (filter !== "all") {
+                    viewMoreBtn.style.display = "none";
+                    return;
+                }
+                var hasMoreInAll = items.length > matchedItems.length || (expandedAll && items.length > allLimit);
+                viewMoreBtn.style.display = hasMoreInAll ? "inline-flex" : "none";
+                viewMoreBtn.textContent = expandedAll ? "Show Less" : "View More";
+            }
+
+            tabButtons.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    var filter = button.getAttribute("data-work-filter");
+                    if (!filter) return;
+                    if (filter !== "all") expandedAll = false;
+
+                    tabButtons.forEach(function (btn) {
+                        var isActive = btn === button;
+                        btn.classList.toggle("active", isActive);
+                        btn.setAttribute("aria-selected", isActive ? "true" : "false");
+                    });
+
+                    applyFilter(filter);
+                });
+            });
+
+            if (viewMoreBtn) {
+                viewMoreBtn.addEventListener("click", function () {
+                    if (currentFilter !== "all") return;
+                    expandedAll = !expandedAll;
+                    applyFilter("all");
+                });
+            }
+
+            applyFilter("all");
+        })();
+    </script>
     <!-- /Javascript -->
 
 </body>
 
 </html>
+
