@@ -96,10 +96,23 @@
   }
 
   function setNavDisabled() {
-    const single = slides.length <= 1;
-    if (prevBtn) prevBtn.classList.toggle("is-disabled", single);
-    if (nextBtn) nextBtn.classList.toggle("is-disabled", single);
-    if (viewerDots) viewerDots.style.display = single ? "none" : "flex";
+    const isCarouselPost = (activePostEl?.dataset.type || "single") === "carousel";
+    if (isCarouselPost) {
+      const single = slides.length <= 1;
+      if (prevBtn) prevBtn.classList.toggle("is-disabled", single);
+      if (nextBtn) nextBtn.classList.toggle("is-disabled", single);
+      if (viewerDots) viewerDots.style.display = single ? "none" : "flex";
+      return;
+    }
+
+    // Single-post mode: arrows navigate adjacent visible single posts
+    const list = getVisibleSinglePosts();
+    const idx = list.indexOf(activePostEl);
+    const hasPrev = idx > 0;
+    const hasNext = idx >= 0 && idx < list.length - 1;
+    if (prevBtn) prevBtn.classList.toggle("is-disabled", !hasPrev);
+    if (nextBtn) nextBtn.classList.toggle("is-disabled", !hasNext);
+    if (viewerDots) viewerDots.style.display = "none";
   }
 
   function renderDots() {
@@ -167,6 +180,40 @@
     renderSlide();
   }
 
+  function getVisibleSinglePosts() {
+    return posts.filter((p) => {
+      const type = p.dataset.type || "single";
+      const isVisible = p.style.display !== "none";
+      return type !== "carousel" && isVisible;
+    });
+  }
+
+  function goToAdjacentPost(direction) {
+    const list = getVisibleSinglePosts();
+    const idx = list.indexOf(activePostEl);
+    if (idx < 0) return;
+
+    const target = list[idx + direction];
+    if (!target) return;
+
+    activePostEl = target;
+    activeIndex = posts.indexOf(target);
+    setDetailsFromPost(target);
+    setSlidesFromPost(target);
+  }
+
+  function nextAction() {
+    const type = activePostEl?.dataset.type || "single";
+    if (type === "carousel") nextSlide();
+    else goToAdjacentPost(1);
+  }
+
+  function prevAction() {
+    const type = activePostEl?.dataset.type || "single";
+    if (type === "carousel") prevSlide();
+    else goToAdjacentPost(-1);
+  }
+
   function setDetailsFromPost(el) {
     const type = el.dataset.type || "single";
     const title = el.dataset.title || "Untitled";
@@ -191,6 +238,8 @@
     } else {
       slides = el.dataset.image ? [el.dataset.image] : [];
     }
+    // Force media track rebuild so image always matches current post.
+    viewerMedia.innerHTML = "";
     viewerMedia.classList.toggle("is-carousel", slides.length > 1);
     updateCarouselViewport();
     slideIndex = 0;
@@ -226,8 +275,8 @@
 
     const action = target.getAttribute("data-action");
     if (action === "close") closeModal();
-    if (action === "next") nextSlide();
-    if (action === "prev") prevSlide();
+    if (action === "next") nextAction();
+    if (action === "prev") prevAction();
     if (action === "copyLink") {
       const url = new URL(window.location.href);
       if (activePostEl?.dataset.title) url.hash = "#work";
@@ -248,8 +297,8 @@
     if (!isModalOpen()) return;
 
     if (e.key === "Escape") closeModal();
-    if (e.key === "ArrowRight") nextSlide();
-    if (e.key === "ArrowLeft") prevSlide();
+    if (e.key === "ArrowRight") nextAction();
+    if (e.key === "ArrowLeft") prevAction();
   });
 
   window.addEventListener("resize", updateCarouselViewport);
