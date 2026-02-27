@@ -5310,3 +5310,90 @@ header .mobile-menu {
     }
 }
 
+
+.scroll-top-progress {
+    --scroll-progress: 0%;
+    position: fixed;
+    right: 32px;
+    bottom: 28px;
+    width: 58px;
+    height: 58px;
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    border-radius: 50%;
+    background: rgba(14, 14, 14, 0.65);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    z-index: 120;
+    pointer-events: none;
+}
+
+.scroll-top-progress.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.scroll-top-progress__liquid {
+    position: absolute;
+    inset: 0;
+    transform: translateY(calc(100% - var(--scroll-progress)));
+    transition: transform 0.16s linear;
+    background: linear-gradient(180deg, #fb8f10 0%, #fe0101 100%);
+}
+
+.scroll-top-progress__liquid::before,
+.scroll-top-progress__liquid::after {
+    content: "";
+    position: absolute;
+    left: -24%;
+    width: 148%;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.28);
+    border-radius: 43%;
+    top: -12px;
+    animation: liquid-wave 3.4s linear infinite;
+}
+
+.scroll-top-progress__liquid::after {
+    top: -15px;
+    opacity: 0.7;
+    animation-duration: 4.8s;
+    animation-direction: reverse;
+}
+
+.scroll-top-progress__icon {
+    position: relative;
+    z-index: 2;
+    font-size: 22px;
+    line-height: 1;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+@keyframes liquid-wave {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-26%);
+    }
+}
+
+@media (max-width: 1150px) {
+    .scroll-top-progress {
+        right: 18px;
+        bottom: 18px;
+    }
+}
+
