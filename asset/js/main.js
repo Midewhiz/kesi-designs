@@ -1,4 +1,4 @@
-/**
+﻿/**
  *animateText
  *tabs
  *ajaxContactForm

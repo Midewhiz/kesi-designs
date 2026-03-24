@@ -1,4 +1,4 @@
-/* ---------------------------------------------------------
+﻿/* ---------------------------------------------------------
     * Name: Jayden - Portfolio HTML Template
     * Version: 1.0.0
     * Author: WordPressRiver
@@ -3436,6 +3436,14 @@ header .mobile-menu {
     overflow: hidden;
 }
 
+.works-wrap .works-item .image.is-empty {
+    min-height: 520px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%),
+        rgba(14, 14, 14, 0.92);
+    border: 1px dashed rgba(255, 255, 255, 0.18);
+}
+
 .works-wrap .works-item .image img {
     width: 100%;
     height: 100%;
@@ -4983,6 +4991,9 @@ header .mobile-menu {
         width: 100%;
     }
     .works-wrap .works-item .image img {
+        min-height: 400px;
+    }
+    .works-wrap .works-item .image.is-empty {
         min-height: 400px;
     }
     .works-wrap .works-item .content {
