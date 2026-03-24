@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Case Study — Portfolio Work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Optional: swap font if you like -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #07080c;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.65);
+      --faint: rgba(255,255,255,.45);
+      --line: rgba(255,255,255,.12);
+      --shadow: 0 18px 55px rgba(0,0,0,.55);
+
+      --a: #7c3aed;     /* purple */
+      --b: #22c55e;     /* green */
+      --c: #06b6d4;     /* cyan */
+      --d: #f59e0b;     /* amber */
+
+      --radius: 22px;
+      --radius2: 28px;
+      --max: 1160px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(124,58,237,.30), transparent 55%),
+        radial-gradient(900px 600px at 80% 20%, rgba(6,182,212,.22), transparent 55%),
+        radial-gradient(900px 700px at 60% 90%, rgba(34,197,94,.16), transparent 60%),
+        linear-gradient(180deg, #05060a 0%, #07080c 50%, #05060a 100%);
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+
+    /* Subtle grain */
+    body:before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+      mix-blend-mode:overlay;
+      opacity:.08;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:min(var(--max), calc(100% - 48px)); margin:0 auto; }
+
+    /* Top progress bar (CSS only, based on scroll timeline support where available) */
+    .progress{
+      position:fixed;
+      top:0; left:0; right:0;
+      height:3px;
+      z-index:50;
+      background: linear-gradient(90deg, rgba(124,58,237,.8), rgba(6,182,212,.8), rgba(34,197,94,.8));
+      transform-origin:left;
+      transform: scaleX(0);
+      opacity:.9;
+    }
+    @supports (animation-timeline: scroll()) {
+      .progress{
+        animation: grow linear both;
+        animation-timeline: scroll();
+        animation-range: 0% 100%;
+      }
+      @keyframes grow { to { transform: scaleX(1); } }
+    }
+
+    /* --- Header / breadcrumbs --- */
+    header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(7,8,12,.85), rgba(7,8,12,.55));
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px 0;
+    }
+    .crumbs{
+      display:flex; align-items:center; gap:10px;
+      font-size:13px; color: var(--muted);
+    }
+    .crumbs .dot{
+      width:4px; height:4px; border-radius:99px;
+      background: var(--line);
+    }
+    .badge{
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      display:flex; align-items:center; gap:8px;
+      white-space:nowrap;
+    }
+    .badge b{ color: var(--text); font-weight:700; }
+    .pulse{
+      width:8px; height:8px; border-radius:99px;
+      background: rgba(34,197,94,.9);
+      box-shadow: 0 0 0 0 rgba(34,197,94,.55);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%{ box-shadow:0 0 0 0 rgba(34,197,94,.55); }
+      70%{ box-shadow:0 0 0 10px rgba(34,197,94,0); }
+      100%{ box-shadow:0 0 0 0 rgba(34,197,94,0); }
+    }
+
+    /* --- Hero --- */
+    .hero{
+      padding:48px 0 22px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:20px;
+      align-items:stretch;
+    }
+    .heroCard{
+      border-radius: var(--radius2);
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+      padding:28px;
+    }
+    .heroCard:before{
+      content:"";
+      position:absolute; inset:-80px;
+      background:
+        radial-gradient(260px 220px at 20% 15%, rgba(124,58,237,.45), transparent 60%),
+        radial-gradient(260px 220px at 75% 25%, rgba(6,182,212,.35), transparent 60%),
+        radial-gradient(280px 240px at 55% 85%, rgba(34,197,94,.20), transparent 60%);
+      filter: blur(10px);
+      opacity:.9;
+      transform: translate3d(0,0,0);
+    }
+    .heroCard > *{ position:relative; }
+
+    .kicker{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color: var(--muted);
+      font-size:13px;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+    .kicker .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.78);
+    }
+    h1{
+      margin:14px 0 8px;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.05;
+      letter-spacing:-.02em;
+    }
+    .sub{
+      max-width: 62ch;
+      color: rgba(255,255,255,.78);
+      font-size: 16px;
+      line-height:1.6;
+      margin:0 0 18px;
+    }
+
+    .heroActions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 14px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-weight:700;
+      font-size:14px;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.075); border-color: rgba(255,255,255,.22); }
+    .btn.primary{
+      border-color: rgba(124,58,237,.55);
+      background: linear-gradient(180deg, rgba(124,58,237,.35), rgba(124,58,237,.14));
+    }
+    .btn .icon{
+      width:18px;height:18px;border-radius:6px;
+      background: rgba(255,255,255,.08);
+      display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.12);
+      font-size:12px;
+    }
+
+    /* Right hero panel */
+    .metaCard{
+      border-radius: var(--radius2);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow);
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .metaCard:after{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(650px 260px at 30% 0%, rgba(245,158,11,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .metaCard > *{ position:relative; }
+
+    .metaTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .miniTitle{
+      font-weight:800;
+      letter-spacing:-.01em;
+      font-size:14px;
+    }
+    .miniMuted{
+      color: var(--muted);
+      font-size:13px;
+      margin-top:4px;
+      line-height:1.5;
+    }
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+    .tag{
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.76);
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top:4px;
+    }
+    .stat{
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:12px;
+    }
+    .stat b{
+      display:block;
+      font-size:18px;
+      letter-spacing:-.02em;
+    }
+    .stat span{
+      display:block;
+      font-size:12px;
+      color: var(--muted);
+      margin-top:3px;
+    }
+
+    /* --- Body layout with sticky nav --- */
+    .bodyGrid{
+      display:grid;
+      grid-template-columns: 280px 1fr;
+      gap:24px;
+      padding: 22px 0 64px;
+    }
+    aside{
+      position:sticky;
+      top:74px;
+      align-self:start;
+      height: calc(100dvh - 96px);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .sidePanel{
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.035);
+      padding:14px;
+      overflow:hidden;
+    }
+    .sidePanel h3{
+      margin:0 0 10px;
+      font-size:13px;
+      color: rgba(255,255,255,.8);
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+    .nav{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .nav a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 10px;
+      border-radius: 14px;
+      border:1px solid transparent;
+      background: transparent;
+      color: rgba(255,255,255,.78);
+      font-size:14px;
+      transition: background .18s ease, border-color .18s ease;
+    }
+    .nav a:hover{
+      background: rgba(255,255,255,.05);
+      border-color: rgba(255,255,255,.12);
+    }
+    .nav a small{ color: var(--faint); font-size:12px; }
+
+    .callout{
+      border-radius: var(--radius);
+      border:1px solid rgba(124,58,237,.35);
+      background: linear-gradient(180deg, rgba(124,58,237,.18), rgba(255,255,255,.02));
+      padding:14px;
+    }
+    .callout p{
+      margin:0;
+      color: rgba(255,255,255,.78);
+      font-size:13px;
+      line-height:1.55;
+    }
+    .callout b{ color: var(--text); }
+
+    /* --- Main content --- */
+    main{ min-width:0; }
+    .section{
+      border-radius: var(--radius2);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding:22px;
+      margin-bottom:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .sectionHeader{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:12px;
+    }
+    .sectionHeader h2{
+      margin:0;
+      font-size:18px;
+      letter-spacing:-.01em;
+    }
+    .sectionHeader span{
+      color: var(--muted);
+      font-size:13px;
+    }
+    .section p{
+      margin:0;
+      color: rgba(255,255,255,.78);
+      line-height:1.75;
+      font-size:15px;
+      max-width: 78ch;
+    }
+
+    /* Highlight bullets */
+    .bullets{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      margin-top:14px;
+    }
+    .bullet{
+      border-radius: 18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:14px;
+    }
+    .bullet b{ display:block; font-size:14px; }
+    .bullet span{ display:block; margin-top:6px; color: var(--muted); font-size:13px; line-height:1.55; }
+
+    /* Big visual */
+    .visual{
+      margin-top:14px;
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.14);
+      background:
+        radial-gradient(1200px 380px at 20% 10%, rgba(124,58,237,.32), transparent 55%),
+        radial-gradient(900px 360px at 80% 15%, rgba(6,182,212,.25), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      min-height: 320px;
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .visual:before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px) 0 0/ 42px 42px,
+        linear-gradient(180deg, rgba(255,255,255,.06) 1px, transparent 1px) 0 0/ 42px 42px;
+      opacity:.22;
+      mask-image: radial-gradient(400px 280px at 30% 30%, #000 60%, transparent 100%);
+    }
+    .visual .label{
+      position:absolute;
+      left:16px; bottom:16px;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.25);
+      backdrop-filter: blur(10px);
+      font-size:13px;
+      color: rgba(255,255,255,.80);
+    }
+    .visual .label b{ color: var(--text); }
+
+    /* Process timeline */
+    .timeline{
+      margin-top: 14px;
+      display:grid;
+      gap:10px;
+    }
+    .step{
+      border-radius: 18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:14px;
+      display:grid;
+      grid-template-columns: 62px 1fr;
+      gap:12px;
+      align-items:start;
+    }
+    .step .num{
+      width:54px; height:54px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.16));
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      letter-spacing:-.02em;
+    }
+    .step b{ display:block; margin-top:2px; }
+    .step span{ display:block; margin-top:6px; color: var(--muted); line-height:1.6; font-size:13px; }
+
+    /* Deliverables gallery */
+    .gallery{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:10px;
+    }
+    .shot{
+      border-radius: 20px;
+      border:1px solid rgba(255,255,255,.14);
+      background:
+        radial-gradient(420px 220px at 25% 20%, rgba(124,58,237,.25), transparent 55%),
+        radial-gradient(420px 220px at 75% 30%, rgba(6,182,212,.20), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      min-height: 160px;
+      position:relative;
+      overflow:hidden;
+      box-shadow: 0 10px 28px rgba(0,0,0,.35);
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .shot:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.22);
+    }
+    .shot:after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px) 0 0/ 34px 34px,
+        linear-gradient(180deg, rgba(255,255,255,.05) 1px, transparent 1px) 0 0/ 34px 34px;
+      opacity:.14;
+      mask-image: radial-gradient(280px 220px at 40% 35%, #000 55%, transparent 100%);
+      pointer-events:none;
+    }
+    .shot .cap{
+      position:absolute;
+      left:12px; right:12px; bottom:12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      backdrop-filter: blur(10px);
+      font-size:13px;
+      color: rgba(255,255,255,.78);
+    }
+    .shot .cap b{ color: var(--text); font-weight:800; }
+    .shot .cap i{ font-style:normal; color: var(--faint); font-size:12px; }
+
+    .span-7{ grid-column: span 7; }
+    .span-5{ grid-column: span 5; }
+    .span-4{ grid-column: span 4; }
+    .span-8{ grid-column: span 8; }
+    .span-6{ grid-column: span 6; }
+    .span-12{ grid-column: span 12; }
+
+    /* Results / metrics */
+    .metrics{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    .metric{
+      border-radius: 18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .metric:before{
+      content:"";
+      position:absolute; inset:-40px;
+      background: radial-gradient(220px 160px at 15% 20%, rgba(245,158,11,.20), transparent 60%);
+      opacity:.65;
+    }
+    .metric > *{ position:relative; }
+    .metric b{ display:block; font-size:20px; letter-spacing:-.02em; }
+    .metric span{ display:block; margin-top:6px; color: var(--muted); font-size:13px; line-height:1.55; }
+
+    /* Testimonial */
+    .quote{
+      margin-top:14px;
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.10));
+      padding:16px;
+      display:grid;
+      gap:10px;
+    }
+    .quote p{ margin:0; font-size:15px; line-height:1.7; color: rgba(255,255,255,.82); }
+    .quote .who{
+      display:flex; align-items:center; gap:10px;
+      color: var(--muted); font-size:13px;
+    }
+    .avatar{
+      width:34px; height:34px; border-radius: 12px;
+      border:1px solid rgba(255,255,255,.14);
+      background: radial-gradient(circle at 30% 30%, rgba(124,58,237,.35), rgba(255,255,255,.06));
+    }
+
+    /* Footer nav */
+    .pager{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .pager a{
+      flex: 1;
+      min-width: 220px;
+      border-radius: 20px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:14px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .pager a:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.22);
+      background: rgba(255,255,255,.06);
+    }
+    .pager small{ display:block; color: var(--muted); margin-bottom:6px; }
+    .pager b{ display:block; }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .bodyGrid{ grid-template-columns: 1fr; }
+      aside{ position:relative; top:auto; height:auto; }
+    }
+    @media (max-width: 720px){
+      .bullets{ grid-template-columns: 1fr; }
+      .metrics{ grid-template-columns: 1fr; }
+      .stats{ grid-template-columns: 1fr; }
+      .gallery{ grid-template-columns: 1fr; }
+      .span-7,.span-5,.span-4,.span-8,.span-6,.span-12{ grid-column: span 12; }
+      .step{ grid-template-columns: 1fr; }
+      .step .num{ width:52px; height:52px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="crumbs">
+          <a href="#" style="color:rgba(255,255,255,.85);font-weight:800;">KESI</a>
+          <span class="dot"></span>
+          <a href="#" style="color:rgba(255,255,255,.75);">Work</a>
+          <span class="dot"></span>
+          <span>Case Study</span>
+        </div>
+
+        <div class="badge">
+          <span class="pulse" aria-hidden="true"></span>
+          <span><b>Available</b> for select projects</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="heroGrid">
+        <div class="heroCard">
+          <div class="kicker">
+            <span class="pill">Brand Design</span>
+            <span class="pill">Social Campaign</span>
+            <span class="pill">2026</span>
+          </div>
+
+          <h1>Julatamo Travel — Content that sells without looking like ads.</h1>
+          <p class="sub">
+            A monthly social design system that made travel packages instantly scannable, consistent, and conversion-friendly—
+            while keeping the brand premium and human.
+          </p>
+
+          <div class="heroActions">
+            <a class="btn primary" href="#deliverables">
+              <span class="icon">↘</span> View deliverables
+            </a>
+            <a class="btn" href="#results">
+              <span class="icon">✦</span> Jump to results
+            </a>
+            <a class="btn" href="#process">
+              <span class="icon">⧉</span> See process
+            </a>
+          </div>
+        </div>
+
+        <div class="metaCard">
+          <div class="metaTop">
+            <div>
+              <div class="miniTitle">Project Snapshot</div>
+              <div class="miniMuted">A quick read of what mattered.</div>
+
+              <div class="tags">
+                <span class="tag">Role: Designer</span>
+                <span class="tag">Scope: Social Flyers</span>
+                <span class="tag">Cadence: Monthly</span>
+                <span class="tag">Goal: Signups</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats" aria-label="Key stats">
+            <div class="stat">
+              <b>4–8</b>
+              <span>Designs / month</span>
+            </div>
+            <div class="stat">
+              <b>2w</b>
+              <span>Turnaround</span>
+            </div>
+            <div class="stat">
+              <b>1</b>
+              <span>System</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="bodyGrid">
+      <aside>
+        <div class="sidePanel">
+          <h3>On this page</h3>
+          <nav class="nav">
+            <a href="#overview"><span>Overview</span><small>01</small></a>
+            <a href="#problem"><span>Challenge</span><small>02</small></a>
+            <a href="#solution"><span>Solution</span><small>03</small></a>
+            <a href="#process"><span>Process</span><small>04</small></a>
+            <a href="#deliverables"><span>Deliverables</span><small>05</small></a>
+            <a href="#results"><span>Results</span><small>06</small></a>
+            <a href="#notes"><span>Notes</span><small>07</small></a>
+          </nav>
+        </div>
+
+        <div class="callout">
+          <p>
+            <b>Tip:</b> Replace the gradient “shots” with real images later.
+            The layout is already built to make them look premium.
+          </p>
+        </div>
+      </aside>
+
+      <main>
+        <section class="section" id="overview">
+          <div class="sectionHeader">
+            <h2>Overview</h2>
+            <span>What this work is (and isn’t).</span>
+          </div>
+          <p>
+            This is a focused case study page designed to show one project with clarity and taste:
+            the business context, decisions, and output—without drowning people in fluff.
+          </p>
+
+          <div class="bullets">
+            <div class="bullet">
+              <b>Objective</b>
+              <span>Make travel packages instantly understandable + on-brand.</span>
+            </div>
+            <div class="bullet">
+              <b>Audience</b>
+              <span>People who scroll fast, decide faster, and hate complexity.</span>
+            </div>
+            <div class="bullet">
+              <b>Constraint</b>
+              <span>Maintain consistency across recurring monthly designs.</span>
+            </div>
+          </div>
+
+          <div class="visual" aria-label="Hero visual placeholder">
+            <div class="label"><b>Visual highlight:</b> Replace with mockup / banner image</div>
+          </div>
+        </section>
+
+        <section class="section" id="problem">
+          <div class="sectionHeader">
+            <h2>Challenge</h2>
+            <span>What was broken.</span>
+          </div>
+          <p>
+            The content needed to do two jobs at once: feel premium enough to be trusted, and be simple enough to convert.
+            The old approach had inconsistent hierarchy—prices, dates, and package value weren’t readable at a glance.
+          </p>
+
+          <div class="bullets">
+            <div class="bullet">
+              <b>Hierarchy drift</b>
+              <span>Important details competed instead of cooperating.</span>
+            </div>
+            <div class="bullet">
+              <b>Inconsistent layouts</b>
+              <span>Every post felt like a new brand (it shouldn’t).</span>
+            </div>
+            <div class="bullet">
+              <b>Scroll fatigue</b>
+              <span>Too much text for a “3-second decision” moment.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="solution">
+          <div class="sectionHeader">
+            <h2>Solution</h2>
+            <span>The system I built.</span>
+          </div>
+          <p>
+            I designed a modular social system: fixed zones for the essentials (destination, value, price, CTA),
+            plus flexible areas for imagery and seasonal emphasis—so every post looks like the same brand,
+            but never feels copy-paste.
+          </p>
+
+          <div class="bullets">
+            <div class="bullet">
+              <b>3-level hierarchy</b>
+              <span>Scan → Understand → Act (in that order).</span>
+            </div>
+            <div class="bullet">
+              <b>Reusable layout grid</b>
+              <span>Consistency without sameness.</span>
+            </div>
+            <div class="bullet">
+              <b>CTA discipline</b>
+              <span>One action. One message. Zero confusion.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="process">
+          <div class="sectionHeader">
+            <h2>Process</h2>
+            <span>How it was made.</span>
+          </div>
+          <p>
+            Tight process, clean output. Each step exists to reduce revision cycles and protect the brand.
+          </p>
+
+          <div class="timeline">
+            <div class="step">
+              <div class="num">01</div>
+              <div>
+                <b>Content audit + pattern spotting</b>
+                <span>What repeats every month? Price formats, date structures, routes, value props.</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">02</div>
+              <div>
+                <b>Layout zones + hierarchy rules</b>
+                <span>Defined fixed “zones” for scan-critical info, and flexible zones for storytelling.</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">03</div>
+              <div>
+                <b>Template system + variants</b>
+                <span>Created multiple shells (promo, package, announcement) using the same core grid.</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">04</div>
+              <div>
+                <b>Production + consistency checks</b>
+                <span>Every design passes: legibility, spacing rhythm, CTA clarity, brand tone.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="deliverables">
+          <div class="sectionHeader">
+            <h2>Deliverables</h2>
+            <span>Replace each card with your real outputs.</span>
+          </div>
+          <p>
+            Below is a gallery layout that makes anything look high-end: social posts, banners,
+            mockups, brand sheets, etc. Swap backgrounds with your images later.
+          </p>
+
+          <div class="gallery">
+            <div class="shot span-7">
+              <div class="cap"><b>Primary Template</b><i>Feed post</i></div>
+            </div>
+            <div class="shot span-5">
+              <div class="cap"><b>Variant A</b><i>Promo post</i></div>
+            </div>
+            <div class="shot span-4">
+              <div class="cap"><b>Story Cut</b><i>Vertical</i></div>
+            </div>
+            <div class="shot span-8">
+              <div class="cap"><b>Package Breakdown</b><i>Carousel frame</i></div>
+            </div>
+            <div class="shot span-6">
+              <div class="cap"><b>Announcement</b><i>Minimal</i></div>
+            </div>
+            <div class="shot span-6">
+              <div class="cap"><b>Price Emphasis</b><i>High contrast</i></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="results">
+          <div class="sectionHeader">
+            <h2>Results</h2>
+            <span>Use real numbers if you have them.</span>
+          </div>
+          <p>
+            Don’t oversell. Just show what improved and why it matters. If you don’t have metrics, use proxy results:
+            faster approvals, fewer revisions, increased consistency, cleaner brand perception.
+          </p>
+
+          <div class="metrics">
+            <div class="metric">
+              <b>↓ Revisions</b>
+              <span>Systemized layouts reduced “try this / try that” iteration loops.</span>
+            </div>
+            <div class="metric">
+              <b>↑ Clarity</b>
+              <span>Critical details (price/dates/value) became scan-friendly.</span>
+            </div>
+            <div class="metric">
+              <b>↑ Consistency</b>
+              <span>Monthly designs stayed cohesive without looking repetitive.</span>
+            </div>
+          </div>
+
+          <div class="quote" aria-label="Testimonial">
+            <p>
+              “This made our posts feel like a real brand. People understand the package faster, and we spend less time
+              explaining in DMs.”
+            </p>
+            <div class="who">
+              <div class="avatar" aria-hidden="true"></div>
+              <span><b style="color:var(--text);">Client Name</b> · Founder, Julatamo</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="notes">
+          <div class="sectionHeader">
+            <h2>Notes</h2>
+            <span>What you learned / what you’d do next.</span>
+          </div>
+          <p>
+            If I extended this, I’d build a lightweight content playbook: how to write package captions that match the design
+            hierarchy, and a monthly planning template so the brand stays sharp even under pressure.
+          </p>
+
+          <div class="pager">
+            <a href="#">
+              <small>Previous</small>
+              <b>Project Title Here</b>
+            </a>
+            <a href="#">
+              <small>Next</small>
+              <b>Another Project Title</b>
+            </a>
+          </div>
+        </section>
+      </main>
+    </div>
+  </section>
+</body>
+</html>
