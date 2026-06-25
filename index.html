@@ -321,7 +321,7 @@
                                         <div class="sub-heading text">Julatamo Travels and Tour Agency</div>
                                         <div class="job-title">
                                             <h6 class="title">Graphic Designer</h6>
-                                            <div class="text-body-2 time-line type-tags">Oct 2025 - Feb 2026</div>
+                                            <div class="text-body-2 time-line type-tags">Oct 2025 - May 2026</div>
                                         </div>
                                     </div>
                                     <div class="item scrolling-effect effectLeft">
@@ -373,7 +373,7 @@
                                         <button class="works-tab-btn text-body-2" type="button" data-work-filter="brand-identity" role="tab" aria-selected="false">Brand Identity</button>
                                     </div>
                                 </div>
-                                <div class="works-wrap" id="worksWrap" data-all-limit="4">
+                                <div class="works-wrap" id="worksWrap" data-all-limit="5">
                                     <div class="works-item scrolling-effect effectLeft" data-work-category="social-media-designs">
                                         <a class="image" href="random_flyers.html" aria-label="Open flyer designs showcase">
                                             <img class="lazyload" src="asset/images/portfolio/flyers/flyer_banner.png" data-src="asset/images/portfolio/flyers/flyer_banner.png" alt="Flyer designs banner">
@@ -438,6 +438,60 @@
                                                 <a href="techwriteable.html" class="link date text-body-2 type-tags">2023 - 2025</a>
                                             </div>
                                             <a href="techwriteable.html" class="btn-links">
+                                                <i class="icon icon-arrow-top-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="works-item scrolling-effect effectLeft" data-work-category="brand-identity">
+                                        <a class="image" href="creavup-logo.html" aria-label="Open Creavup logo reveal">
+                                            <img class="lazyload" src="asset/images/portfolio/creavup-logo/creavupbanner.jpg" data-src="asset/images/portfolio/creavup-logo/creavupbanner.jpg" alt="Creavup logo reveal preview">
+                                        </a>
+                                        <div class="content">
+                                            <div class="infor">
+                                                <div class="sub-heading sub">Brand Identity</div>
+                                                <h3 class="title">
+                                                    <a href="creavup-logo.html">Creavup Logo Reveal</a>
+                                                </h3>
+                                                <a href="creavup-logo.html" class="link date text-body-2 type-tags">Creative Identity System</a>
+                                            </div>
+                                            <a href="creavup-logo.html" class="btn-links">
+                                                <i class="icon icon-arrow-top-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="works-item scrolling-effect effectLeft" data-work-category="brand-identity">
+                                        <a class="image" href="techwriteable-logo.html" aria-label="Open Techwriteable logo reveal">
+                                            <img class="lazyload" src="asset/images/portfolio/techwriteable-logo/techwriteable_logo.png" data-src="asset/images/portfolio/techwriteable-logo/techwriteable_logo.png" alt="Techwriteable logo reveal preview">
+                                        </a>
+                                        <div class="content">
+                                            <div class="infor">
+                                                <div class="sub-heading sub">Brand Identity</div>
+                                                <h3 class="title">
+                                                    <a href="techwriteable-logo.html">Techwriteable Logo Reveal</a>
+                                                </h3>
+                                                <a href="techwriteable-logo.html" class="link date text-body-2 type-tags">Premium Identity System</a>
+                                            </div>
+                                            <a href="techwriteable-logo.html" class="btn-links">
+                                                <i class="icon icon-arrow-top-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="works-item scrolling-effect effectLeft" data-work-category="brand-identity">
+                                        <a class="image" href="shopwithdora-logo.html" aria-label="Open Shop with Dora logo reveal">
+                                            <img class="lazyload" src="asset/images/portfolio/shopwithdora-logo/image01.jpg" data-src="asset/images/portfolio/shopwithdora-logo/image01.jpg" alt="Shop with Dora logo reveal preview">
+                                        </a>
+                                        <div class="content">
+                                            <div class="infor">
+                                                <div class="sub-heading sub">Brand Identity</div>
+                                                <h3 class="title">
+                                                    <a href="shopwithdora-logo.html">Shop with Dora Logo Reveal</a>
+                                                </h3>
+                                                <a href="shopwithdora-logo.html" class="link date text-body-2 type-tags">Retail Identity System</a>
+                                            </div>
+                                            <a href="shopwithdora-logo.html" class="btn-links">
                                                 <i class="icon icon-arrow-top-right"></i>
                                             </a>
                                         </div>
@@ -1238,10 +1292,9 @@
             var items = Array.prototype.slice.call(worksWrap.querySelectorAll(".works-item"));
             var viewMoreBtn = document.getElementById("worksViewMoreBtn");
             var emptyState = document.getElementById("worksEmptyState");
-            var allLimit = parseInt(worksWrap.getAttribute("data-all-limit"), 10) || 4;
+            var allLimit = parseInt(worksWrap.getAttribute("data-all-limit"), 10) || 5;
             var currentFilter = "all";
-            var expandedAll = false;
-            var categoryOrder = ["social-media-designs", "web-design", "brand-identity"];
+            var expandedFilters = {};
 
             function matchesFilter(item, filter) {
                 if (filter === "all") return true;
@@ -1253,35 +1306,18 @@
                 currentFilter = filter;
                 var matchedItems = [];
 
-                if (filter === "all" && !expandedAll) {
-                    var selected = [];
-
-                    categoryOrder.forEach(function (category) {
-                        var found = items.find(function (item) {
-                            return (item.getAttribute("data-work-category") || "").split(/\s+/).indexOf(category) !== -1;
-                        });
-                        if (found && selected.indexOf(found) === -1) selected.push(found);
-                    });
-
-                    if (selected.length < allLimit) {
-                        items.forEach(function (item) {
-                            if (selected.length >= allLimit) return;
-                            if (selected.indexOf(item) === -1) selected.push(item);
-                        });
-                    }
-                    matchedItems = selected;
-                } else {
-                    items.forEach(function (item) {
-                        if (matchesFilter(item, filter)) matchedItems.push(item);
-                    });
-                }
+                items.forEach(function (item) {
+                    if (matchesFilter(item, filter)) matchedItems.push(item);
+                });
 
                 items.forEach(function (item) {
                     item.hidden = true;
                 });
 
+                var isExpanded = expandedFilters[filter] === true;
+
                 matchedItems.forEach(function (item, index) {
-                    var shouldShow = filter !== "all" || expandedAll || index < allLimit;
+                    var shouldShow = isExpanded || index < allLimit;
                     item.hidden = !shouldShow;
                 });
 
@@ -1291,20 +1327,15 @@
                 }
 
                 if (!viewMoreBtn) return;
-                if (filter !== "all") {
-                    viewMoreBtn.style.display = "none";
-                    return;
-                }
-                var hasMoreInAll = items.length > matchedItems.length || (expandedAll && items.length > allLimit);
-                viewMoreBtn.style.display = hasMoreInAll ? "inline-flex" : "none";
-                viewMoreBtn.textContent = expandedAll ? "Show Less" : "View More";
+                var hasMore = matchedItems.length > allLimit;
+                viewMoreBtn.style.display = hasMore ? "inline-flex" : "none";
+                viewMoreBtn.textContent = isExpanded ? "Show Less" : "View More";
             }
 
             tabButtons.forEach(function (button) {
                 button.addEventListener("click", function () {
                     var filter = button.getAttribute("data-work-filter");
                     if (!filter) return;
-                    if (filter !== "all") expandedAll = false;
 
                     tabButtons.forEach(function (btn) {
                         var isActive = btn === button;
@@ -1318,9 +1349,8 @@
 
             if (viewMoreBtn) {
                 viewMoreBtn.addEventListener("click", function () {
-                    if (currentFilter !== "all") return;
-                    expandedAll = !expandedAll;
-                    applyFilter("all");
+                    expandedFilters[currentFilter] = expandedFilters[currentFilter] !== true;
+                    applyFilter(currentFilter);
                 });
             }
 
