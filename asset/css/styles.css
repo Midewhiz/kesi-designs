@@ -3432,6 +3432,10 @@ header .mobile-menu {
 
 .works-wrap .works-item .image {
     display: flex;
+    width: 100%;
+    max-width: 100%;
+    height: 520px;
+    min-height: 520px;
     border-radius: 24px;
     overflow: hidden;
 }
@@ -3445,9 +3449,11 @@ header .mobile-menu {
 }
 
 .works-wrap .works-item .image img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 
 .works-wrap .works-item .content {
@@ -4991,6 +4997,10 @@ header .mobile-menu {
         width: 100%;
     }
     .works-wrap .works-item .image img {
+        min-height: 0;
+    }
+    .works-wrap .works-item .image {
+        height: 400px;
         min-height: 400px;
     }
     .works-wrap .works-item .image.is-empty {
